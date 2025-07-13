@@ -18,7 +18,6 @@
 | **Window Manager**          | KDE |
 | **Bar**                     | [Waybar][Waybar] |
 | **Application Launcher**    | [rofi][rofi] |
-| **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Ghostty][Ghostty] |
 | **Shell**                   | [zsh][zsh] + [powerlevel10k][powerlevel10k] |
 | **Text Editor**             | Zed |
@@ -30,14 +29,13 @@
 | **GTK theme**               | [Colloid gtk theme][Colloid gtk theme] |
 | **Cursor**                  | [Bibata-Modern-Ice][Bibata-Modern-Ice] |
 | **Icons**                   | [Papirus-Dark][Papirus-Dark] |
-| **Lockscreen**              | [Hyprlock][Hyprlock] + [Swaylock-effects][Swaylock-effects] |
+| **Lockscreen**              | sddm |
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
 | **Music Player**            | [audacious][audacious] |
 | **Screenshot Software**     | [grimblast][grimblast] |
 | **Screen Recording**        | [wf-recorder][wf-recorder] + [OBS][OBS] |
 | **Clipboard**               | [wl-clip-persist][wl-clip-persist] |
-| **Color Picker**            | [hyprpicker][hyprpicker] |
 
 
 ## 📝 Shell aliases
