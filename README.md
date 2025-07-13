@@ -15,13 +15,13 @@
 ## 📓 Components
 |                             | NixOS + Hyprland                                                                              |
 | --------------------------- | :---------------------------------------------------------------------------------------------:
-| **Window Manager**          | [Hyprland][Hyprland] |
+| **Window Manager**          | KDE |
 | **Bar**                     | [Waybar][Waybar] |
 | **Application Launcher**    | [rofi][rofi] |
 | **Notification Daemon**     | [swaync][swaync] |
 | **Terminal Emulator**       | [Ghostty][Ghostty] |
 | **Shell**                   | [zsh][zsh] + [powerlevel10k][powerlevel10k] |
-| **Text Editor**             | [VSCodium][VSCodium] + [Neovim][Neovim] |
+| **Text Editor**             | Zed |
 | **network management tool** | [NetworkManager][NetworkManager] + [network-manager-applet][network-manager-applet] |
 | **System resource monitor** | [Btop][Btop] |
 | **File Manager**            | [nemo][nemo] + [yazi][yazi] |
@@ -344,7 +344,6 @@ Even though I use home manager, there is still a little bit of manual configurat
 
 
 <!-- Links -->
-[Hyprland]: https://github.com/hyprwm/Hyprland
 [Ghostty]: https://ghostty.org/
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
 [Waybar]: https://github.com/Alexays/Waybar
