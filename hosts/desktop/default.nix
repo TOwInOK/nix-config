@@ -11,6 +11,8 @@
     enable = true;
   };
 
+  swapDevices = lib.mkForce [ ];
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable nvidia

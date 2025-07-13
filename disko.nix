@@ -9,7 +9,7 @@
           partitions = {
             ESP = {
               name = "boot";
-              type = "EF00"; # EFI System Partition
+              type = "EF00";
               size = "512M";
               content = {
                 type = "filesystem";
@@ -19,8 +19,10 @@
                   "defaults"
                   "noatime"
                 ];
+                esp = true;
               };
             };
+
             root = {
               name = "root";
               size = "100%";

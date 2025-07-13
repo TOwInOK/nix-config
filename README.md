@@ -118,182 +118,6 @@ Git (EXPAND)
 
 All the scripts are in ```modules/home/scripts/scripts/``` and are exported as packages in ```modules/home/scripts/default.nix```
 
-<details>
-<summary>
-extract.sh 
-</summary>
-
-**Description:** This script extract ```tar.gz``` archives in the current directory.
-
-**Usage:** ```extract <archive_file>```
-</details>
-
-<details>
-<summary>
-compress.sh 
-</summary>
-
-**Description:** This script compress a file or a folder into a ```tar.gz``` archives which is created in the current directory with the name of the chosen file or folder. 
-
-**Usage:** ```compress <file>``` or ```compress <folder>```
-</details>
-
-<details>
-<summary>
-toggle_blur.sh 
-</summary>
-
-**Description:** This script toggles the Hyprland blur effect. If the blur is currently enabled, it will be disabled, and if it's disabled, it will be turned on. 
-
-**Usage:** ```toggle_blur```
-</details>
-
-<details>
-<summary>
-toggle_oppacity.sh 
-</summary>
-
-**Description:** This script toggles the Hyperland oppacity effect. If the oppacity is currently set to 0.90, it will be set to 1, and if it's set to 1, it will be set to 0.90. 
-
-**Usage:** ```toggle_oppacity```
-</details>
-
-<details>
-<summary>
-maxfetch.sh 
-</summary>
-
-**Description:** This script is a modified version of the [jobcmax/maxfetch][maxfetch] script.
-
-**Usage:** ```maxfetch```
-</details>
-
-<details>
-<summary>
-music.sh 
-</summary>
-
-**Description:** This script is for managing Audacious (music player). If Audacious is currently running, it will be killed (stopping the music); otherwise, it will start Audacious in the 8th workspace and resume the music. 
-
-**Usage:** ```music```
-</details>
-
-<details>
-<summary>
-runbg.sh 
-</summary>
-
-**Description:** This script runs a provided command along with its arguments and detaches it from the terminal. Handy for launching apps from the command line without blocking it. 
-
-**Usage:** ```runbg <command> <arg1> <arg2> <...>```
-</details>
-
-## ⌨️ Keybinds
-
-View all keybinds by pressing ```$mainMod F1``` and wallpaper picker by pressing ```$mainMod w```. By default ```$mainMod``` is the ```SUPER``` key. 
-
-<details>
-<summary>
-Keybindings 
-</summary>
-
-##### show keybinds list
-- ```$mainMod, F1, exec, show-keybinds```
-
-##### keybindings
-- ```$mainMod, Return, exec, wezterm start --always-new-process```
-- ```ALT, Return, exec, [float; center] wezterm start --always-new-process```
-- ```$mainMod SHIFT, Return, exec, [fullscreen] wezterm start --always-new-process```
-- ```$mainMod, B, exec, hyprctl dispatch exec '[workspace 1 silent] floorp'```
-- ```$mainMod, Q, killactive,```
-- ```$mainMod, F, fullscreen, 0```
-- ```$mainMod SHIFT, F, fullscreen, 1```
-- ```$mainMod, Space, togglefloating,```
-- ```$mainMod, D, exec, rofi -show drun```
-- ```$mainMod SHIFT, D, exec, hyprctl dispatch exec '[workspace 4 silent] discord --enable-features=UseOzonePlatform --ozone-platform=wayland'```
-- ```$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'```
-- ```$mainMod, Escape, exec, swaylock```
-- ```ALT, Escape, exec, hyprlock```
-- ```$mainMod SHIFT, Escape, exec, power-menu```
-- ```$mainMod, P, pseudo,```
-- ```$mainMod, J, togglesplit,```
-- ```$mainMod, T, exec, toggle_oppacity```
-- ```$mainMod, E, exec, nemo```
-- ```$mainMod SHIFT, B, exec, toggle_waybar```
-- ```$mainMod, C ,exec, hyprpicker -a```
-- ```$mainMod, W,exec, wallpaper-picker```
-- ```$mainMod, N, exec, swaync-client -t -sw```
-- ```$mainMod SHIFT, W, exec, vm-start```
-
-##### screenshot
-- ```$mainMod, Print, exec, grimblast --notify --cursor --freeze save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png```
-- ```,Print, exec, grimblast --notify --cursor --freeze copy area```
-
-##### switch focus
-- ```$mainMod, left, movefocus, l```
-- ```$mainMod, right, movefocus, r```
-- ```$mainMod, up, movefocus, u```
-- ```$mainMod, down, movefocus, d```
-
-##### switch workspace
-- ```$mainMod, 1, workspace, 1```
-- ```$mainMod, 2, workspace, 2```
-- ```$mainMod, 3, workspace, 3```
-- ```$mainMod, 4, workspace, 4```
-- ```$mainMod, 5, workspace, 5```
-- ```$mainMod, 6, workspace, 6```
-- ```$mainMod, 7, workspace, 7```
-- ```$mainMod, 8, workspace, 8```
-- ```$mainMod, 9, workspace, 9```
-- ```$mainMod, 0, workspace, 10```
-
-##### same as above, but switch to the workspace
-- ```$mainMod SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent```
-- ```$mainMod SHIFT, 2, movetoworkspacesilent, 2"```
-- ```$mainMod SHIFT, 3, movetoworkspacesilent, 3"```
-- ```$mainMod SHIFT, 4, movetoworkspacesilent, 4"```
-- ```$mainMod SHIFT, 5, movetoworkspacesilent, 5"```
-- ```$mainMod SHIFT, 6, movetoworkspacesilent, 6"```
-- ```$mainMod SHIFT, 7, movetoworkspacesilent, 7"```
-- ```$mainMod SHIFT, 8, movetoworkspacesilent, 8"```
-- ```$mainMod SHIFT, 9, movetoworkspacesilent, 9"```
-- ```$mainMod SHIFT, 0, movetoworkspacesilent, 10"```
-- ```$mainMod CTRL, c, movetoworkspace, empty"```
-
-##### window control
-- ```$mainMod SHIFT, left, movewindow, l```
-- ```$mainMod SHIFT, right, movewindow, r```
-- ```$mainMod SHIFT, up, movewindow, u```
-- ```$mainMod SHIFT, down, movewindow, d```
-- ```$mainMod CTRL, left, resizeactive, -80 0```
-- ```$mainMod CTRL, right, resizeactive, 80 0```
-- ```$mainMod CTRL, up, resizeactive, 0 -80```
-- ```$mainMod CTRL, down, resizeactive, 0 80```
-- ```$mainMod ALT, left, moveactive,  -80 0```
-- ```$mainMod ALT, right, moveactive, 80 0```
-- ```$mainMod ALT, up, moveactive, 0 -80```
-- ```$mainMod ALT, down, moveactive, 0 80```
-
-##### media and volume controls
-- ```,XF86AudioRaiseVolume,exec, pamixer -i 2```
-- ```,XF86AudioLowerVolume,exec, pamixer -d 2```
-- ```,XF86AudioMute,exec, pamixer -t```
-- ```,XF86AudioPlay,exec, playerctl play-pause```
-- ```,XF86AudioNext,exec, playerctl next```
-- ```,XF86AudioPrev,exec, playerctl previous```
-- ```,XF86AudioStop, exec, playerctl stop```
-- ```$mainMod, mouse_down, workspace, e-1```
-- ```$mainMod, mouse_up, workspace, e+1```
-
-##### laptop brigthness
-- ```,XF86MonBrightnessUp, exec, brightnessctl set 5%+```
-- ```,XF86MonBrightnessDown, exec, brightnessctl set 5%-```
-- ```$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%+```
-- ```$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-```
-
-##### clipboard manager
-- ```$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str 'window {width: 50%;}' | cliphist decode | wl-copy```
-</details>
 
 # 🚀 Installation 
 
@@ -306,26 +130,38 @@ Keybindings
 
 #### 1. **Install NixOs**
 
-First install nixos using any [graphical ISO image](https://nixos.org/download.html#nixos-iso). 
-> [!NOTE]
-> Only been tested using the Gnome graphical installer and choosing the ```No desktop``` option durring instalation.
+First install nixos using any [nix ISO image](https://nixos.org/download.html#nixos-iso). 
 
 #### 2. **Clone the repo**
 
 ```bash
 nix-shell -p git
-git clone https://github.com/Frost-Phoenix/nixos-config
+git clone https://github.com/TOwInOK/nixos-config
 cd nixos-config
 ```
-#### 3. **Install script**
-> [!CAUTION]
-> For some computers, the default rebuild command might get stuck due to CPU cores running out of RAM. To fix that modify the install script line: ```sudo nixos-rebuild switch --flake .#${HOST}``` to ```sudo nixos-rebuild switch --cores <less than your max number of cores> --flake .#${HOST}```
 
-> [!TIP]
-> As it is better to know what a script does before running it, you are advised to read it or at least see the [Install script walkthrough](#Install-script-walkthrough) section before execution.
-   
-Execute and follow the installation script :
+
+#### 2.1 **Configrate disko**
+
+```sh
+lsblk
+
+nano disco.nix # vim disco.nix
+```
+
+#### 2.2 **Generate hardware** | you can skip it
+```sh
+sudo nixos-generate-config --root /mnt
+cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/<vm|desktop>/
+```
+
+#### 3. **Install script**
 ```bash
+
+sudo nixos-rebuild switch --flake .#${HOST} # desktop / vm
+
+# or
+
 ./install.sh
 ```
   

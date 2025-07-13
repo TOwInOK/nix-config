@@ -102,32 +102,35 @@ aseprite() {
 install() {
     echo -e "\n${RED}START INSTALL PHASE${NORMAL}\n"
 
-    # Create basic directories
-    echo -e "Creating folders:"
-    echo -e "    - ${MAGENTA}~/Music${NORMAL}"
-    echo -e "    - ${MAGENTA}~/Documents${NORMAL}"
-    echo -e "    - ${MAGENTA}~/Pictures/wallpapers/others${NORMAL}"
-    mkdir -p ~/Music
-    mkdir -p ~/Documents
-    mkdir -p ~/Pictures/wallpapers/others
+    run_disko
+    generate_hw_config
 
-    # Copy the wallpapers
-    echo -e "Copying all ${MAGENTA}wallpapers${NORMAL}"
+    echo -e "Creating user folders"
+    mkdir -p ~/Music ~/Documents ~/Pictures/wallpapers/others
+
+    echo -e "Copying wallpapers"
     cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
     cp -r wallpapers/otherWallpaper/gruvbox/* ~/Pictures/wallpapers/others/
     cp -r wallpapers/otherWallpaper/nixos/* ~/Pictures/wallpapers/others/
 
-    # Get the hardware configuration
-    echo -e "Copying ${MAGENTA}/etc/nixos/hardware-configuration.nix${NORMAL} to ${MAGENTA}./hosts/${HOST}/${NORMAL}\n"
-    cp /etc/nixos/hardware-configuration.nix hosts/${HOST}/hardware-configuration.nix
-
-    # Last Confirmation
-    echo -en "You are about to start the system build, do you want to process ? "
+    echo -en "Do you want to install the system on disk now? "
     confirm
 
-    # Build the system (flakes + home manager)
-    echo -e "\nBuilding the system...\n"
-    sudo nixos-rebuild switch --flake .#${HOST}
+    echo -e "\n${BLUE}Installing NixOS...${NORMAL}"
+    sudo nixos-install --flake .#${HOST}
+
+    echo -e "\n${GREEN}Installation complete. You can now reboot.${NORMAL}"
+}
+
+run_disko() {
+    echo -e "\n${BLUE}Running disko to partition and mount disks...${NORMAL}"
+    sudo nix run github:nix-community/disko -- --mode disko ./disko.nix
+}
+
+generate_hw_config() {
+    echo -e "\n${BLUE}Generating hardware-configuration.nix...${NORMAL}"
+    sudo nixos-generate-config --root /mnt
+    cp /mnt/etc/nixos/hardware-configuration.nix hosts/${HOST}/hardware-configuration.nix
 }
 
 main() {
