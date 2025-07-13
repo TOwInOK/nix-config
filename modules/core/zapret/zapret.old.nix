@@ -1,37 +1,41 @@
 { config, pkgs, ... }:
 
 let
-  whitelistFile = ./whitelist.txt;       
+  whitelistFile = ./whitelist.txt;
 in
 {
   systemd.services.zapret = {
-    enable      = true;
-    after       = [ "network-online.target" ];
-    wants       = [ "network-online.target" ];
-    wantedBy    = [ "multi-user.target" ];
+    enable = true;
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
 
     path = with pkgs; [
-      iptables nftables ipset curl gawk
+      iptables
+      nftables
+      ipset
+      curl
+      gawk
       (zapret.overrideAttrs (_: {
         src = pkgs.fetchFromGitHub {
           owner = "bol-van";
-          repo  = "zapret";
-          rev   = "29c8aec1116d504692bebc16420d0e3ad65c030b";
-          hash  = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
+          repo = "zapret";
+          rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
+          hash = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
         };
       }))
     ];
 
     serviceConfig = {
-      Type        = "forking";
-      Restart     = "no";
-      TimeoutSec  = "30sec";
+      Type = "forking";
+      Restart = "no";
+      TimeoutSec = "30sec";
       IgnoreSIGPIPE = "no";
-      KillMode    = "none";
+      KillMode = "none";
       GuessMainPID = "no";
 
       ExecStart = "${pkgs.bash}/bin/bash -c 'zapret start'";
-      ExecStop  = "${pkgs.bash}/bin/bash -c 'zapret stop'";
+      ExecStop = "${pkgs.bash}/bin/bash -c 'zapret stop'";
 
       EnvironmentFile = pkgs.writeText "zapret-env" ''
         MODE="nfqws"

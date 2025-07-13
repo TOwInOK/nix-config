@@ -1,17 +1,13 @@
 { ... }:
 {
   programs.zed.userKeymaps = [
-  {
-    context: "Workspace",
-    bindings: {
-      // "shift shift": "file_finder::Toggle"
-    };
-  };
-  {
-    context: "Editor && vim_mode == insert && !menu",
-    bindings: {
-      // "j k": "vim::SwitchToNormalMode"
-    };
-  };
-]
+    {
+      context = "Workspace";
+      bindings = { };
+    }
+    {
+      context = "Editor && vim_mode == insert && !menu";
+      bindings = { };
+    }
+  ];
 }

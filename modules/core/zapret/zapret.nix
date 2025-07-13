@@ -5,16 +5,16 @@ let
   zap = zapret.overrideAttrs (_: {
     src = pkgs.fetchFromGitHub {
       owner = "bol-van";
-      repo  = "zapret";
-      rev   = "29c8aec1116d504692bebc16420d0e3ad65c030b";
-      hash  = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
+      repo = "zapret";
+      rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
+      hash = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
     };
   });
 
-  binDir  = "${zap}/bin";
+  binDir = "${zap}/bin";
   listDir = "${zap}/list";
   quicBin = "${binDir}/quic_initial_www_google_com.bin";
-  tlsBin  = "${binDir}/tls_clienthello_www_google_com.bin";
+  tlsBin = "${binDir}/tls_clienthello_www_google_com.bin";
 
   envFile = pkgs.writeText "zapret-env" ''
     MODE="nfqws"
@@ -43,22 +43,31 @@ let
     IPSET="${listDir}/ipset-cloudflare.txt"
     WHITELIST="${whitelistFile}"
   '';
-in {
+in
+{
   # Сервис zapret
   systemd.services.zapret = {
-    enable    = true;
-    after     = [ "network-online.target" ];
-    wants     = [ "network-online.target" ];
-    wantedBy  = [ "multi-user.target" ];
+    enable = true;
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
 
-    path = with pkgs; [ bash iptables nftables ipset curl gawk zap ];
+    path = with pkgs; [
+      bash
+      iptables
+      nftables
+      ipset
+      curl
+      gawk
+      zap
+    ];
 
     serviceConfig = {
-      Type        = "simple";
-      Restart     = "on-failure";
-      TimeoutSec  = "30s";
+      Type = "simple";
+      Restart = "on-failure";
+      TimeoutSec = "30s";
       IgnoreSIGPIPE = "no";
-      KillMode    = "none";
+      KillMode = "none";
       GuessMainPID = "no";
 
       ExecStart = ''

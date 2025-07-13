@@ -11,7 +11,7 @@
     enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable nvidia
   hardware.nvidia = {
@@ -20,5 +20,5 @@
     package = config.boot.kernelPackages.nvidiaPackages.production;
     nvidiaSettings = true;
     open = false;
-  }
+  };
 }

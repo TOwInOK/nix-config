@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   # https://mynixos.com/nixpkgs/package/rtkit
   security.rtkit.enable = true;
