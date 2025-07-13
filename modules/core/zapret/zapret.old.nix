@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  whitelistFile = ./../zapret/whitelist.txt;       
+  whitelistFile = ./whitelist.txt;       
 in
 {
   systemd.services.zapret = {
