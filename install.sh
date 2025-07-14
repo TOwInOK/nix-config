@@ -29,27 +29,27 @@ confirm() {
 
 print_header() {
     echo -E "$CYAN
- _________  ________  ___       __   ___  ________   ________  ___  __       
-|\___   ___|\   __  \|\  \     |\  \|\  \|\   ___  \|\   __  \|\  \|\  \     
-\|___ \  \_\ \  \|\  \ \  \    \ \  \ \  \ \  \\ \  \ \  \|\  \ \  \/  /|_   
-     \ \  \ \ \  \\\  \ \  \  __\ \  \ \  \ \  \\ \  \ \  \\\  \ \   ___  \  
-      \ \  \ \ \  \\\  \ \  \|\__\_\  \ \  \ \  \\ \  \ \  \\\  \ \  \\ \  \ 
+ _________  ________  ___       __   ___  ________   ________  ___  __
+|\___   ___|\   __  \|\  \     |\  \|\  \|\   ___  \|\   __  \|\  \|\  \
+\|___ \  \_\ \  \|\  \ \  \    \ \  \ \  \ \  \\ \  \ \  \|\  \ \  \/  /|_
+     \ \  \ \ \  \\\  \ \  \  __\ \  \ \  \ \  \\ \  \ \  \\\  \ \   ___  \
+      \ \  \ \ \  \\\  \ \  \|\__\_\  \ \  \ \  \\ \  \ \  \\\  \ \  \\ \  \
        \ \__\ \ \_______\ \____________\ \__\ \__\\ \__\ \_______\ \__\\ \__\
         \|__|  \|_______|\|____________|\|__|\|__| \|__|\|_______|\|__| \|__|
-                                                                             
-                                                                             
-                                                                             
- ________  ________  _________  ________                                     
-|\   ___ \|\   __  \|\___   ___|\   ____\                                    
-\ \  \_|\ \ \  \|\  \|___ \  \_\ \  \___|_                                   
- \ \  \ \\ \ \  \\\  \   \ \  \ \ \_____  \                                  
-  \ \  \_\\ \ \  \\\  \   \ \  \ \|____|\  \                                 
-   \ \_______\ \_______\   \ \__\  ____\_\  \                                
-    \|_______|\|_______|    \|__| |\_________\                               
-                                  \|_________|                               
-                                                                             
-                  $BLUE https://github.com/TOwInOK $RED 
-                  $BLUE inspired by https://github.com/Frost-Phoenix/nixos-config $RED 
+
+
+
+ ________  ________  _________  ________
+|\   ___ \|\   __  \|\___   ___|\   ____\
+\ \  \_|\ \ \  \|\  \|___ \  \_\ \  \___|_
+ \ \  \ \\ \ \  \\\  \   \ \  \ \ \_____  \
+  \ \  \_\\ \ \  \\\  \   \ \  \ \|____|\  \
+   \ \_______\ \_______\   \ \__\  ____\_\  \
+    \|_______|\|_______|    \|__| |\_________\
+                                  \|_________|
+
+                  $BLUE https://github.com/TOwInOK $RED
+                  $BLUE inspired by https://github.com/Frost-Phoenix/nixos-config $RED
       ! To make sure everything runs correctly DONT run as root ! $GREEN
                         -> '"./install.sh"' $NORMAL
 
@@ -105,14 +105,6 @@ install() {
     run_disko
     generate_hw_config
 
-    echo -e "Creating user folders"
-    mkdir -p ~/Music ~/Documents ~/Pictures/wallpapers/others
-
-    echo -e "Copying wallpapers"
-    cp -r wallpapers/wallpaper.png ~/Pictures/wallpapers
-    cp -r wallpapers/otherWallpaper/gruvbox/* ~/Pictures/wallpapers/others/
-    cp -r wallpapers/otherWallpaper/nixos/* ~/Pictures/wallpapers/others/
-
     echo -en "Do you want to install the system on disk now? "
     confirm
 
@@ -120,17 +112,26 @@ install() {
     sudo nixos-install --flake .#${HOST}
 
     echo -e "\n${GREEN}Installation complete. You can now reboot.${NORMAL}"
+
+    echo -en "\n${YELLOW}reboot ? [${GREEN}y${NORMAL}/${RED}n${NORMAL}]${NORMAL}"
+    read -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        sudo reboot now
+    fi
 }
 
 run_disko() {
     echo -e "\n${BLUE}Running disko to partition and mount disks...${NORMAL}"
-    sudo nix run github:nix-community/disko -- --mode disko ./disko.nix
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount ./disko.nix
 }
 
 generate_hw_config() {
     echo -e "\n${BLUE}Generating hardware-configuration.nix...${NORMAL}"
     sudo nixos-generate-config --root /mnt
+    echo "configuration has been generated"
     cp /mnt/etc/nixos/hardware-configuration.nix hosts/${HOST}/hardware-configuration.nix
+    echo "configuration has been copied"
 }
 
 main() {
