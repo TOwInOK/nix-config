@@ -1,3 +1,5 @@
-{pkgs, ...}: {
-  programs = [pkgs.zed-zed-editor];
+{...}: {
+  programs.zed-editor = {
+    enable = true;
+  };
 }
