@@ -15,14 +15,7 @@ in {
       ipset
       curl
       gawk
-      (zapret.overrideAttrs (_: {
-        src = pkgs.fetchFromGitHub {
-          owner = "bol-van";
-          repo = "zapret";
-          rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
-          hash = "sha256-diWPEakHgYytBknng1Opfr7XZbf58JqzwPz8KbmNcBQ=";
-        };
-      }))
+      zapret
     ];
 
     serviceConfig = {
