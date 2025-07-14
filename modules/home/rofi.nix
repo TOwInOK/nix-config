@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ rofi-wayland ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [rofi-wayland];
 
   xdg.configFile."rofi/theme.rasi".text = ''
     * {

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  programs.zed.extensions = [
+{pkgs, ...}: {
+  programs.zed-editor.extensions = [
     "HTML"
     "Catppucin"
     "TOML"
@@ -9,7 +8,7 @@
     "Discord-Presence"
     "RON"
   ];
-  programs.zed.extraPackages = with pkgs; [
+  programs.zed-editor.extraPackages = with pkgs; [
     nixd
     ruff
   ];

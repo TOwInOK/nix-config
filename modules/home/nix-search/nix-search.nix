@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   nsearch = pkgs.writeShellScriptBin "nsearch" (
     builtins.readFile ./nix-search.sh
   );
-in
-{
+in {
   home.packages = with pkgs; [
     nix-search-tv
     nsearch

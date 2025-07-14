@@ -1,6 +1,5 @@
-{ ... }:
-{
-  programs.zed.userSettings = {
+{...}: {
+  programs.zed-editor.userSettings = {
     debugger = {
       dock = "left";
     };
@@ -40,7 +39,7 @@
             terminal = true;
           };
           enable_all_context_servers = false;
-          context_servers = { };
+          context_servers = {};
         };
       };
       play_sound_when_agent_done = false;
@@ -77,7 +76,7 @@
           checkOnSave = true;
         };
         procMacro = {
-          ignored = [ "server" ];
+          ignored = ["server"];
         };
       };
       ruff = {

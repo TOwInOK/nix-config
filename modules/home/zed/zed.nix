@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-{
-  programs.zed = {
-    enable = true;
-    package = pkgs.zed-editor;
-  };
+{pkgs, ...}: {
+  programs = [pkgs.zed-zed-editor];
 }

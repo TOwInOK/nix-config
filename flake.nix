@@ -17,35 +17,36 @@
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs =
-    { nixpkgs, self, ... }@inputs:
-    let
-      username = "towinok";
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
+  outputs = {
+    nixpkgs,
+    self,
+    ...
+  } @ inputs: let
+    username = "towinok";
+    system = "x86_64-linux";
+    # pkgs = import nixpkgs {
+    #   inherit system;
+    #   config.allowUnfree = true;
+    # };
+    # lib = nixpkgs.lib;
+  in {
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/desktop ];
-          specialArgs = {
-            host = "desktop";
-            inherit self inputs username;
-          };
+        modules = [./hosts/desktop];
+        specialArgs = {
+          host = "desktop";
+          inherit self inputs username;
         };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./hosts/vm ];
-          specialArgs = {
-            host = "vm";
-            inherit self inputs username;
-          };
+      };
+      vm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [./hosts/vm];
+        specialArgs = {
+          host = "vm";
+          inherit self inputs username;
         };
       };
     };
+  };
 }

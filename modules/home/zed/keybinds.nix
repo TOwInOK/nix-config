@@ -1,13 +1,12 @@
-{ ... }:
-{
-  programs.zed.userKeymaps = [
+{...}: {
+  programs.zed-editor.userKeymaps = [
     {
       context = "Workspace";
-      bindings = { };
+      bindings = {};
     }
     {
       context = "Editor && vim_mode == insert && !menu";
-      bindings = { };
+      bindings = {};
     }
   ];
 }

@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       nvme = {
-        device = "/dev/nvme0n1"; # Path to disk
+        device = "/dev/nvme0n1"; # sba / sdb
         type = "disk";
         content = {
           type = "gpt";
@@ -19,7 +19,6 @@
                   "defaults"
                   "noatime"
                 ];
-                esp = true;
               };
             };
 
@@ -28,7 +27,7 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Force creation
+                extraArgs = ["-f"];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";

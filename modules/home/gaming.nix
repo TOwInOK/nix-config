@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     ## Utils
     gamemode
@@ -9,11 +12,5 @@
 
     ## Minecraft
     prismlauncher
-
-    ## Emulation
-    # sameboy
-    # snes9x
-    # cemu
-    # dolphin-emu
   ];
 }

@@ -1,14 +1,13 @@
-{ config, pkgs, ... }:
-
-let
-  whitelistFile = ./whitelist.txt;
-in
-{
+{pkgs, ...}: let
+  whitelistFile = ./list/whitelist.txt;
+  quicBin = ./bin/quic_initial_www_google_com.bin;
+  tlsBin = ./bin/tls_clienthello_www_google_com.bin;
+in {
   systemd.services.zapret = {
     enable = true;
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+    wantedBy = ["multi-user.target"];
 
     path = with pkgs; [
       iptables
@@ -48,6 +47,9 @@ in
         MODE_FILTER=none
         DISABLE_IPV6=1
         INIT_APPLY_FW=1
+
+        QUIC_BIN="${quicBin}"
+        TLS_BIN="${tlsBin}"
 
         NFQWS_OPT_DESYNC="--dpi-desync=syndata,fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-repeats=6"
         NFQWS_OPT_DESYNC_QUIC="--dpi-desync=fake,tamper --dpi-desync-any-protocol"

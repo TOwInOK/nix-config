@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     ## Lsp
     nixd # nix
@@ -13,12 +12,12 @@
     cargo
     rustc
 
-    ## C 
+    ## C
     gcc
 
     # JS/TS
     deno
-    nodejs 
+    nodejs
 
     ## Python
     python3

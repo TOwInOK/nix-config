@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   # imports = [ inputs.nix-gaming.nixosModules.default ];
   nix = {
     settings = {
@@ -23,7 +26,7 @@
     };
   };
   nixpkgs = {
-    overlays = [ inputs.nur.overlays.default ];
+    overlays = [inputs.nur.overlays.default];
   };
 
   environment.systemPackages = with pkgs; [

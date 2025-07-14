@@ -1,5 +1,8 @@
-{ pkgs, host, ... }:
 {
+  pkgs,
+  host,
+  ...
+}: {
   networking = {
     hostName = "${host}";
     networkmanager.enable = true;
@@ -15,9 +18,9 @@
         80
         443
       ];
-      allowedUDPPorts = [ ];
+      allowedUDPPorts = [];
     };
   };
 
-  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+  environment.systemPackages = with pkgs; [networkmanagerapplet];
 }

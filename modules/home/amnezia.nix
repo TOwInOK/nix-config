@@ -1,4 +1,3 @@
-{ ... }:
-{
-  programs.amnezia-vpn.enable = true;
+{pkgs, ...}: {
+  home.packages = with pkgs; [amnezia-vpn];
 }

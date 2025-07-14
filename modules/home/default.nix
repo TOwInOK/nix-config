@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./aseprite/aseprite.nix # pixel art editor
     ./audacious.nix # music player
@@ -19,7 +18,6 @@
     ./lazygit.nix
     ./micro.nix # nano replacement
     ./nix-search/nix-search.nix # TUI to search nixpkgs
-    ./nvim.nix # neovim editor
     ./p10k/p10k.nix
     ./nemo.nix # File browser for Cinnamon
     ./packages # other packages

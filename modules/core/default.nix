@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./bootloader.nix
     ./hardware.nix
@@ -15,6 +14,6 @@
     ./virtualization.nix
     ./wayland.nix
     ./xserver.nix
-    ./zapret.nix
+    ./zapret
   ];
 }

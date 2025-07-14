@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
-
-let
+{pkgs, ...}: let
   whitelistFile = ./whitelist.txt;
-  zap = zapret.overrideAttrs (_: {
+  zap = pkgs.zapret.overrideAttrs (_: {
     src = pkgs.fetchFromGitHub {
       owner = "bol-van";
       repo = "zapret";
@@ -43,14 +41,13 @@ let
     IPSET="${listDir}/ipset-cloudflare.txt"
     WHITELIST="${whitelistFile}"
   '';
-in
-{
+in {
   # Сервис zapret
   systemd.services.zapret = {
     enable = true;
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+    wantedBy = ["multi-user.target"];
 
     path = with pkgs; [
       bash

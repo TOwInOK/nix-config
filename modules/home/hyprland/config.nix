@@ -1,9 +1,7 @@
-{ ... }:
-let
+{...}: let
   browser = "zen-beta";
   terminal = "ghostty";
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       # autostart

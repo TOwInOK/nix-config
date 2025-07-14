@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.zsh = {
     shellAliases = {
       # Utils
@@ -42,7 +41,6 @@
       # TODO:
       # - add ruff
       # - add cargo
-    
     };
   };
 }

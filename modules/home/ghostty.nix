@@ -3,18 +3,20 @@
   pkgs,
   host,
   ...
-}:
-let
+}: let
   ghostty = inputs.ghostty.packages.${pkgs.system}.default;
-in
-{
-  home.packages = [ ghostty ];
+in {
+  home.packages = [ghostty];
 
   xdg.configFile."ghostty/config".text = ''
     # Font
     font-family = "Maple Mono"
     font-family = "DejaVu Sans"
-    font-size = ${if (host == "laptop") then "16" else "17"}
+    font-size = ${
+      if (host == "laptop")
+      then "16"
+      else "17"
+    }
     font-feature = calt
     font-feature = ss03
 
