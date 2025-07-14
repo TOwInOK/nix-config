@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs = {
     steam = {
-      enable = false;
+      enable = true;
 
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
